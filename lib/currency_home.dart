@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
-
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -72,6 +72,10 @@ class _MaterialHome extends State<MaterialHome> {
       appBar: AppBar(
         backgroundColor: Colors.blueGrey[600],
         elevation: 0,
+        leading: GestureDetector(
+          onTap: _launchURLGdrive,
+          child: const Icon(Icons.download),
+        ),
         title: const Text(
           "Currency Converter",
           style: TextStyle(color: Colors.white),
@@ -129,5 +133,14 @@ class _MaterialHome extends State<MaterialHome> {
         ),
       ),
     );
+  }
+}
+
+_launchURLGdrive() async {
+  const url = 'bit.ly/anshcurrencyapp';
+  if (await canLaunchUrl(Uri.parse(url))) {
+    await launchUrl(Uri.parse(url));
+  } else {
+    throw 'Could not launch $url';
   }
 }
