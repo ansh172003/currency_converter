@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -60,6 +61,9 @@ class _MaterialHome extends State<MaterialHome> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setApplicationSwitcherDescription(
+        const ApplicationSwitcherDescription(
+            label: "Currency Converter", primaryColor: 0));
     final border = OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
       borderSide: const BorderSide(
@@ -140,7 +144,7 @@ class _MaterialHome extends State<MaterialHome> {
 }
 
 _launchURLGDrive() async {
-  const url = 'https://bit.ly/anshcurrencyapp';
+  const url = 'https://bit.ly/currencyappbyansh';
   if (await canLaunchUrl(Uri.parse(url))) {
     await launchUrl(Uri.parse(url));
   } else {
