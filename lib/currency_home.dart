@@ -72,9 +72,12 @@ class _MaterialHome extends State<MaterialHome> {
       appBar: AppBar(
         backgroundColor: Colors.blueGrey[600],
         elevation: 0,
-        leading: GestureDetector(
-          onTap: _launchURLGdrive,
-          child: const Icon(Icons.download),
+        leading: const IconButton(
+          icon: Icon(
+            Icons.download,
+            color: Colors.white,
+          ),
+          onPressed: _launchURLGDrive,
         ),
         title: const Text(
           "Currency Converter",
@@ -136,8 +139,8 @@ class _MaterialHome extends State<MaterialHome> {
   }
 }
 
-_launchURLGdrive() async {
-  const url = 'bit.ly/anshcurrencyapp';
+_launchURLGDrive() async {
+  const url = 'https://bit.ly/anshcurrencyapp';
   if (await canLaunchUrl(Uri.parse(url))) {
     await launchUrl(Uri.parse(url));
   } else {
