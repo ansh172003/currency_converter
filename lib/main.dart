@@ -1,6 +1,6 @@
 import 'package:currency_converter/currency_home.dart';
-import 'package:currency_converter/currency_home_cup.dart';
-import 'package:flutter/cupertino.dart';
+// import 'package:currency_converter/currency_home_cup.dart';
+// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,11 +20,11 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyCupApp extends StatelessWidget {
-  const MyCupApp({super.key});
+// class MyCupApp extends StatelessWidget {
+//   const MyCupApp({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return const CupertinoApp(home: CurrencyHomeCup());
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return const CupertinoApp(home: CurrencyHomeCup());
+//   }
+// }

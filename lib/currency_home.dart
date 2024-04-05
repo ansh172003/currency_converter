@@ -1,4 +1,29 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+
+class ApiConstants {
+  static String baseUrl =
+      'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json';
+}
+
+class ApiService {
+  Future<double?> getCurrentRate() async {
+    try {
+      var url = Uri.parse(ApiConstants.baseUrl);
+      var response = await http.get(url);
+      if (response.statusCode == 200) {
+        double val = jsonDecode(response.body)['usd']['inr'];
+        return val;
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+    return 81;
+  }
+}
 
 class MaterialHome extends StatefulWidget {
   const MaterialHome({super.key});
@@ -8,11 +33,23 @@ class MaterialHome extends StatefulWidget {
 }
 
 class _MaterialHome extends State<MaterialHome> {
+  late double _val = 0;
+
+  void _getData() async {
+    _val = (await ApiService().getCurrentRate())!;
+  }
+
   double result = 0;
   final TextEditingController textEditingController = TextEditingController();
   void convert() {
-    result = (double.parse(textEditingController.text) * 81);
+    result = (double.parse(textEditingController.text) * _val);
     setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getData();
   }
 
   @override
